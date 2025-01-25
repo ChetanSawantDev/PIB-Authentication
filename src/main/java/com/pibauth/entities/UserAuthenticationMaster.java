@@ -2,6 +2,8 @@ package com.pibauth.entities;
 
 import jakarta.persistence.*;
 import java.time.ZonedDateTime;
+import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "PIB_USER_AUTH_MASTER")
@@ -24,6 +26,14 @@ public class UserAuthenticationMaster {
     @OneToOne
     @JoinColumn(columnDefinition = "userRoleId")
     private UserRoleMaster userMastRole;
+
+    @ManyToMany
+    @JoinTable(
+            name = "JT_USER_RESOURCE_MAPPING", // Name of the join table
+            joinColumns = @JoinColumn(name = "user_auth_mast_id"), // Foreign key for UserRoleMaster
+            inverseJoinColumns = @JoinColumn(name = "resource_mast_id") // Foreign key for ResourceMaster
+    )
+    private List<ResourceMaster> resourceMaster;
 
     @Column(nullable = false)
     private boolean isActiveUser;
