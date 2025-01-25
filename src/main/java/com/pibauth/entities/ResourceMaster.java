@@ -1,8 +1,8 @@
 package com.pibauth.entities;
 
 import jakarta.persistence.*;
-
 import java.time.ZonedDateTime;
+
 
 @Entity
 public class ResourceMaster {
@@ -12,11 +12,8 @@ public class ResourceMaster {
 
     private String resourceName;
 
-    @ManyToOne
-    @JoinColumn(columnDefinition = "resourceModuleId")
+    @ManyToOne()
     private ResourceModuleMaster resourceModuleMaster;
-
-    private String userMasterId;
 
     @Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
     private ZonedDateTime createdAt;
@@ -26,3 +23,4 @@ public class ResourceMaster {
 
 
 }
+
